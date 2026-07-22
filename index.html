@@ -213,6 +213,7 @@
     <div class="nav-links">
       <a href="#projects">Проекты</a>
       <a href="#architecture">Архитектура</a>
+      <a href="#stack">Стек</a>
       <a href="#path">Путь</a>
       <a href="#results">Результаты</a>
       <a href="#documents">Документы</a>
@@ -226,7 +227,7 @@
   <canvas id="wave" aria-hidden="true"></canvas>
   <div class="wrap hero">
     <div>
-      <div class="onair"><span class="dot"></span> on air · агент принимает звонки</div>
+      <div class="onair"><span class="dot"></span> проект «Антискам» · голосовой AI-агент</div>
       <h1>Инженер сопровождения ПО.<br>Строю <span class="accent">голосовых AI-агентов</span>,<br>которые снимают трубку.</h1>
       <p class="lede">Опыт эксплуатации банковских систем — мониторинг, инциденты, SLA — и практика AI-разработки: <b>от SIP-транка до LLM-диалога и деплоя на VPS</b>. Ниже не концепты, а работающие системы с автотестами и живыми звонками.</p>
       <div class="actions">
@@ -248,14 +249,15 @@
 <section id="projects">
   <div class="wrap">
     <div class="eyebrow">// что я строю</div>
-    <h2>Два проекта, доведённые до работы</h2>
-    <p class="sub">Оба сделаны самостоятельно: от постановки задачи и архитектуры до эксплуатации и тестов.</p>
+    <h2>Два проекта в рабочем состоянии</h2>
+    <p class="sub">Оба сделаны самостоятельно — от постановки задачи и архитектуры до эксплуатации и автотестов.</p>
     <div class="grid2">
       <article class="card">
-        <h3>Телефонный голосовой AI-агент <span class="status">· в эфире</span></h3>
-        <p>Агент отвечает на реальные телефонные звонки и ведёт живой диалог: слушает, понимает, говорит — и умеет замолчать, когда его перебивают.</p>
+        <h3>«Антискам» <span class="status">— телефонный голосовой AI-агент</span></h3>
+        <p>Принимает звонок вместо человека и удерживает мошенника на линии: время оператора колл-центра уходит впустую, а не на жертву. Разговор записывается и расшифровывается.</p>
         <ul class="facts">
           <li>Полный тракт звонка: SIP-транк → STT → LLM → TTS, с настройкой определения конца фразы (EOU)</li>
+          <li>Проработка речевого поведения персонажа: интонации, паузы, оговорки — чтобы диалог не выдавал бота</li>
           <li>Перебивание (barge-in), двухдорожечная запись, живая лента разговора и суфлёр-пульт в Telegram</li>
           <li>Эксплуатация: VPS, systemd-юниты, ротация записей, сторожевые механизмы, предохранитель аудиоочереди</li>
           <li>380+ автотестов; каждая фаза — через независимое ревью кода</li>
@@ -292,6 +294,19 @@
   </div>
 </section>
 
+<section id="stack">
+  <div class="wrap">
+    <div class="eyebrow">// стек</div>
+    <h2>Чем работаю</h2>
+    <div class="stack">
+      <div class="group"><h3>Разработка</h3><div class="chips"><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">Git / GitHub</span><span class="chip">pytest</span><span class="chip">JSON-конфигурации</span></div></div>
+      <div class="group"><h3>AI / LLM</h3><div class="chips"><span class="chip">YandexGPT</span><span class="chip">Claude</span><span class="chip">OpenAI</span><span class="chip">DeepSeek</span><span class="chip">Groq</span><span class="chip">tool calling</span><span class="chip">MCP</span><span class="chip">LM Studio</span><span class="chip">Ollama</span><span class="chip">Whisper</span><span class="chip">ElevenLabs TTS</span></div></div>
+      <div class="group"><h3>Инфраструктура</h3><div class="chips"><span class="chip">Linux</span><span class="chip">systemd</span><span class="chip">VPS</span><span class="chip">SIP-телефония</span><span class="chip">VPN / OpenWrt</span></div></div>
+      <div class="group"><h3>Эксплуатация</h3><div class="chips"><span class="chip">Zabbix</span><span class="chip">Grafana</span><span class="chip">Apache Ignite</span><span class="chip">Kafka</span><span class="chip">SQL / PostgreSQL</span><span class="chip">инциденты, SLA</span></div></div>
+    </div>
+  </div>
+</section>
+
 <section id="path">
   <div class="wrap">
     <div class="eyebrow">// путь</div>
@@ -300,19 +315,19 @@
     <div class="path">
       <div class="step">
         <div class="when">2005 – 2015</div><div class="nd"></div>
-        <div class="what"><h3>Автоэлектрик BMW</h3><p>Десять лет диагностики сложных электронных систем: привычка докапываться до причины и читать схему целиком, а не менять узлы наугад.</p></div>
+        <div class="what"><h3>Автоэлектрик BMW</h3><p>Диагностика сложных электронных систем: привычка искать причину, а не менять узлы наугад.</p></div>
       </div>
       <div class="step">
         <div class="when">2018 – 2023</div><div class="nd"></div>
-        <div class="what"><h3>Major-Auto · администратор</h3><p>Корпоративные информационные системы и базы данных, отчётность по заказам и договорам, анализ данных и выявление расхождений, технические консультации.</p></div>
+        <div class="what"><h3>Major-Auto · администратор</h3><p>Корпоративные информационные системы, базы данных, отчётность и анализ данных.</p></div>
       </div>
       <div class="step">
         <div class="when">2024 – 2025</div><div class="nd"></div>
-        <div class="what"><h3>Сбер · дежурная смена антифрода</h3><p>Мониторинг боевых систем (Zabbix, Grafana), инциденты, восстановление кластера Apache Ignite, потоки данных Kafka, SLA.</p></div>
+        <div class="what"><h3>Сбер · дежурная смена антифрода</h3><p>Мониторинг боевых систем (Zabbix, Grafana), реагирование на инциденты, восстановление кластера Apache Ignite, потоки данных Kafka, контроль SLA.</p></div>
       </div>
       <div class="step now">
         <div class="when">2026 → сейчас</div><div class="nd"></div>
-        <div class="what"><h3>AI-assisted development</h3><p>Инженер по сопровождению ПО (ООО «ДИП ДИДЖИТАЛ») и самостоятельный выход в AI-разработку: от концепции до агента, принимающего живые звонки.</p></div>
+        <div class="what"><h3>AI-assisted development</h3><p>Инженер по сопровождению ПО. Параллельно — самостоятельный выход в AI-разработку: от изучения предметной области и проектирования архитектуры до работающего голосового агента на VPS. Полный цикл в одиночку: спецификация, код, интеграции, автотесты, развёртывание и эксплуатация.</p></div>
       </div>
     </div>
   </div>
@@ -359,18 +374,7 @@
   </div>
 </section>
 
-<section id="stack">
-  <div class="wrap">
-    <div class="eyebrow">// стек</div>
-    <h2>Чем работаю</h2>
-    <div class="stack">
-      <div class="group"><h3>Разработка</h3><div class="chips"><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">Git / GitHub</span><span class="chip">pytest</span><span class="chip">JSON-конфигурации</span></div></div>
-      <div class="group"><h3>AI / LLM</h3><div class="chips"><span class="chip">YandexGPT</span><span class="chip">Claude</span><span class="chip">OpenAI</span><span class="chip">DeepSeek</span><span class="chip">Groq</span><span class="chip">tool calling</span><span class="chip">MCP</span><span class="chip">LM Studio</span><span class="chip">Ollama</span><span class="chip">Whisper</span><span class="chip">ElevenLabs TTS</span></div></div>
-      <div class="group"><h3>Инфраструктура</h3><div class="chips"><span class="chip">Linux</span><span class="chip">systemd</span><span class="chip">VPS</span><span class="chip">SIP-телефония</span><span class="chip">VPN / OpenWrt</span></div></div>
-      <div class="group"><h3>Эксплуатация</h3><div class="chips"><span class="chip">Zabbix</span><span class="chip">Grafana</span><span class="chip">Apache Ignite</span><span class="chip">Kafka</span><span class="chip">SQL / PostgreSQL</span><span class="chip">инциденты, SLA</span></div></div>
-    </div>
-  </div>
-</section>
+
 
 <section id="documents">
   <div class="wrap">
@@ -418,10 +422,10 @@
 <section id="contact">
   <div class="wrap">
     <div class="callout">
-      <div class="eyebrow">// связь</div>
-      <h2 style="margin-bottom:14px">Открыт к задачам в AI-разработке</h2>
-      <p>Заинтересован в продолжении работы и готов выполнять задачи в соответствии с квалификацией: голосовые агенты, LLM-интеграции, автоматизация, эксплуатация сервисов.</p>
-      <p>Рассматриваю продолжение работы в текущей организации, перевод на подходящую техническую позицию или новую команду.</p>
+      <div class="eyebrow">// сотрудничество</div>
+      <h2 style="margin-bottom:14px">Открыт к сотрудничеству</h2>
+      <p>Сопровождение ПО, автоматизация, AI-интеграции и разработка голосовых сервисов. Готов обсуждать формат сотрудничества и объём задач.</p>
+      <p>Рассматриваю как продолжение работы в текущем формате, так и другие варианты — в зависимости от задач и условий.</p>
       <div class="actions">
         <a class="btn primary" href="https://t.me/kursivnik">t.me/kursivnik</a>
         <a class="btn" href="mailto:kursivnik@gmail.com">kursivnik@gmail.com</a>
