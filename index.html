@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сергей Шибелёв — инженер сопровождения ПО, голосовые AI-агенты</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="yandex" content="noindex, nofollow">
+<meta name="description" content="Резюме и презентация результатов: голосовые AI-агенты, LLM-интеграции, эксплуатация сервисов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080C0E; --panel:#101619; --panel2:#161F23;
+    --text:#E4EDEC; --muted:#87A0A2; --line:#1E2C31;
+    --amber:#3DDC97; --cyan:#4A7DF7;
+    --shadow:0 18px 44px rgba(0,0,0,.5);
+    --wave-a:61,220,151; --wave-b:74,125,247;
+  }
+  [data-theme="light"]{
+    --bg:#F3F7F6; --panel:#FFFFFF; --panel2:#E7F0EE;
+    --text:#0D1A18; --muted:#5A6E6C; --line:#D5E2DF;
+    --amber:#0E9E6B; --cyan:#2B57C4;
+    --shadow:0 16px 40px rgba(16,40,36,.10);
+    --wave-a:14,158,107; --wave-b:43,87,196;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;line-height:1.58;font-size:17px;transition:background .3s,color .3s}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+  .wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}
+  .brand{font-family:'Unbounded',sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em}
+  .nav-links{display:flex;gap:20px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14.5px;transition:color .18s}
+  .nav-links a:hover{color:var(--text)}
+  .ibtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:7px 11px;font-size:14px;transition:.18s}
+  .ibtn:hover{border-color:var(--amber)}
+
+  /* HERO */
+  header{position:relative;min-height:82vh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+  header::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 70% at 28% 50%, color-mix(in srgb,var(--amber) 22%,transparent) 0%, transparent 62%),
+    radial-gradient(58% 66% at 72% 48%, color-mix(in srgb,var(--cyan) 24%,transparent) 0%, transparent 64%);
+    pointer-events:none;z-index:1}
+  #wave{position:absolute;inset:0;width:100%;height:100%;opacity:.85;z-index:1}
+  .hero{position:relative;z-index:2;padding:80px 0 64px;display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:end}
+  .onair{display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--amber);box-shadow:0 0 12px var(--amber);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.32}}
+  h1{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(32px,5.4vw,58px);line-height:1.08;letter-spacing:-.02em}
+  h1 .accent{color:var(--amber)}
+  .lede{max-width:640px;margin-top:22px;color:var(--muted);font-size:clamp(16px,2vw,19px)}
+  .lede b{color:var(--text);font-weight:600}
+  .actions{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15.5px;border:1px solid var(--line);background:var(--panel);transition:transform .15s,border-color .15s,background .15s}
+  .btn:hover{transform:translateY(-2px);border-color:var(--amber)}
+  .btn.primary{background:var(--amber);color:#04120C;border-color:var(--amber)}
+  .facts-card{background:color-mix(in srgb,var(--panel) 86%,transparent);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+  .facts-card h3{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;font-weight:500}
+  .metric{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}
+  .metric:last-child{border-bottom:0}
+  .metric strong{font-family:'Unbounded',sans-serif;font-weight:500;font-size:20px;color:var(--amber)}
+
+  /* SECTIONS */
+  section{padding:76px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+  h2{font-family:'Unbounded',sans-serif;font-weight:500;font-size:clamp(23px,3.4vw,32px);letter-spacing:-.015em;margin-bottom:10px}
+  .sub{color:var(--muted);max-width:660px;margin-bottom:34px}
+
+  /* CARDS */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:15px;transition:border-color .2s}
+  .card:hover{border-color:var(--cyan)}
+  .card h3{font-family:'Unbounded',sans-serif;font-weight:500;font-size:19px;line-height:1.3}
+  .card h3 .status{color:var(--amber);font-weight:400}
+  .card p{color:var(--muted);font-size:15.5px}
+  .facts{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .facts li{padding-left:19px;position:relative;font-size:15px}
+  .facts li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--cyan)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--cyan);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:4px 9px}
+
+  /* FLOW */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+  .node{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px 14px;position:relative}
+  .node b{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);letter-spacing:.1em;margin-bottom:6px;font-weight:500}
+  .node span{font-size:14px;color:var(--muted)}
+  .node:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--cyan);font-size:15px;z-index:2}
+
+  /* TIMELINE */
+  .path{display:flex;flex-direction:column}
+  .step{display:grid;grid-template-columns:140px 26px 1fr;gap:0 18px;padding-bottom:34px}
+  .step:last-child{padding-bottom:0}
+  .when{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:13.5px;text-align:right;padding-top:2px}
+  .nd{position:relative}
+  .nd::before{content:"";position:absolute;left:11px;top:22px;bottom:-8px;width:2px;background:var(--line)}
+  .step:last-child .nd::before{display:none}
+  .nd::after{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg)}
+  .step.now .nd::after{border-color:var(--amber);background:var(--amber);box-shadow:0 0 10px var(--amber)}
+  .what h3{font-size:16.5px;font-weight:700;margin-bottom:3px}
+  .what p{color:var(--muted);font-size:15px;max-width:580px}
+
+  /* RESULTS ACCORDION */
+  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+  .fbtn{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:7px 14px;font-size:14px;transition:.18s}
+  .fbtn.active{background:var(--cyan);color:#fff;border-color:var(--cyan);font-weight:600}
+  .items{display:flex;flex-direction:column;gap:9px}
+  .item{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+  .head{width:100%;display:grid;grid-template-columns:96px 1fr 20px;gap:14px;align-items:center;background:transparent;color:var(--text);border:0;padding:15px 18px;text-align:left;transition:background .18s}
+  .head:hover{background:var(--panel2)}
+  .date{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--amber)}
+  .ttl{font-size:15.5px}
+  .chev{color:var(--muted);transition:transform .2s;text-align:center}
+  .body{display:none;padding:0 18px 16px 128px;color:var(--muted);font-size:14.5px}
+  .item.open .body{display:block}
+  .item.open .chev{transform:rotate(180deg)}
+
+  /* STACK */
+  .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .group{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .group h3{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:13px;font-weight:500}
+  .group .chips{margin-top:0}
+
+  /* DOCS */
+  .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .doc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s}
+  .doc:hover{border-color:var(--cyan)}
+  .dicon{width:44px;height:44px;flex:0 0 44px;border-radius:11px;background:var(--panel2);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan);border:1px solid var(--line)}
+  .doc h3{font-size:16.5px;margin-bottom:3px;font-weight:700}
+  .doc p{color:var(--muted);font-size:14.5px}
+  .dacts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .dacts .btn{padding:7px 15px;font-size:14px}
+
+  /* CONTACT */
+  .callout{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:16px;padding:32px}
+  .callout p{color:var(--muted);max-width:680px;margin-bottom:12px}
+  footer{padding:30px 0 44px;color:var(--muted);font-size:13.5px}
+
+
+
+  /* SCROLL FX */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,.68,.32,1),transform .75s cubic-bezier(.22,.68,.32,1)}
+  .reveal.in{opacity:1;transform:none}
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:50;background:linear-gradient(90deg,var(--amber),var(--cyan));box-shadow:0 0 10px color-mix(in srgb,var(--cyan) 60%,transparent);transition:width .08s linear}
+  .nav-links a{position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:linear-gradient(90deg,var(--amber),var(--cyan));transition:right .3s ease}
+  .nav-links a.active{color:var(--text)}
+  .nav-links a.active::after{right:0}
+  .hero{will-change:transform,opacity}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none}
+    #progress{display:none}
+  }
+  @media print{ .reveal{opacity:1!important;transform:none!important} #progress{display:none} }
+
+  /* VIEWER */
+  .viewer{position:fixed;inset:0;z-index:60;display:none;background:rgba(6,12,20,.72);backdrop-filter:blur(6px);padding:24px}
+  .viewer.open{display:flex;align-items:center;justify-content:center}
+  .vcard{width:min(1000px,100%);height:min(88vh,100%);background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+  .vhead{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .vhead h3{font-family:'Unbounded',sans-serif;font-weight:500;font-size:16px;flex:1;line-height:1.3}
+  .vhead .btn{padding:8px 15px;font-size:14px}
+  .vclose{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;width:36px;height:36px;font-size:20px;line-height:1;display:grid;place-items:center;transition:.18s}
+  .vclose:hover{border-color:var(--amber)}
+  .vbody{flex:1;background:var(--panel2);position:relative}
+  .vbody iframe{width:100%;height:100%;border:0;display:block}
+  .vfallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:30px;color:var(--muted)}
+  .vfallback.show{display:grid}
+  @media(max-width:600px){.viewer{padding:10px}.vhead h3{font-size:14px}.vhead .btn{display:none}}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;align-items:start}
+    .grid2,.stack,.docs{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr}
+    .node:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}
+    .nav-links a{display:none}
+  }
+  @media(max-width:600px){
+    .step{grid-template-columns:26px 1fr;gap:0 14px}
+    .when{grid-column:2;text-align:left;order:-1;margin-bottom:2px}
+    .nd{grid-row:span 2}
+    .head{grid-template-columns:82px 1fr 18px;padding:14px}
+    .body{padding:0 14px 14px 96px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dot{animation:none} .btn:hover{transform:none} html{scroll-behavior:auto}
+  }
+  @media print{
+    nav,#wave,.actions,.filters,.dacts,.ibtn{display:none!important}
+    body{background:#fff;color:#000}
+    .card,.doc,.group,.facts-card,.callout{box-shadow:none;border-color:#ccc}
+    section{padding:22px 0;border:0}
+    .body{display:block!important}
+    header{min-height:auto}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">Сергей Шибелёв</div>
+    <div class="nav-links">
+      <a href="#projects">Проекты</a>
+      <a href="#architecture">Архитектура</a>
+      <a href="#stack">Стек</a>
+      <a href="#path">Путь</a>
+      <a href="#results">Результаты</a>
+      <a href="#documents">Документы</a>
+      <button class="ibtn" id="themeBtn" type="button" aria-label="Переключить тему">◐</button>
+      <button class="ibtn" id="printBtn" type="button" aria-label="Печать">Печать</button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <canvas id="wave" aria-hidden="true"></canvas>
+  <div class="wrap hero">
+    <div>
+      <div class="onair"><span class="dot"></span> проект «Антискам» · голосовой AI-агент</div>
+      <h1>Инженер сопровождения ПО.<br>Строю <span class="accent">голосовых AI-агентов</span>,<br>которые снимают трубку.</h1>
+      <p class="lede">Опыт эксплуатации банковских систем — мониторинг, инциденты, SLA — и практика AI-разработки: <b>от SIP-транка до LLM-диалога и деплоя на VPS</b>. Ниже не концепты, а работающие системы с автотестами и живыми звонками.</p>
+      <div class="actions">
+        <a class="btn primary" href="#documents">Открыть документы</a>
+        <a class="btn" href="#projects">Смотреть проекты</a>
+        <a class="btn" href="https://t.me/kursivnik">Telegram</a>
+      </div>
+    </div>
+    <aside class="facts-card">
+      <h3>Проект в цифрах</h3>
+      <div class="metric"><span>Автотестов</span><strong>380+</strong></div>
+      <div class="metric"><span>Этапов до релиза</span><strong>Э1–Э10</strong></div>
+      <div class="metric"><span>От идеи до звонка</span><strong>~2 мес</strong></div>
+      <div class="metric"><span>Развёртывание</span><strong>VPS</strong></div>
+    </aside>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">// что я строю</div>
+    <h2>Два проекта в рабочем состоянии</h2>
+    <p class="sub">Оба сделаны самостоятельно — от постановки задачи и архитектуры до эксплуатации и автотестов.</p>
+    <div class="grid2">
+      <article class="card">
+        <h3>«Антискам» <span class="status">— телефонный голосовой AI-агент</span></h3>
+        <p>Принимает звонок вместо человека и удерживает мошенника на линии: время оператора колл-центра уходит впустую, а не на жертву. Разговор записывается и расшифровывается.</p>
+        <ul class="facts">
+          <li>Полный тракт звонка: SIP-транк → STT → LLM → TTS, с настройкой определения конца фразы (EOU)</li>
+          <li>Проработка речевого поведения персонажа: интонации, паузы, оговорки — чтобы диалог не выдавал бота</li>
+          <li>Перебивание (barge-in), двухдорожечная запись, живая лента разговора и суфлёр-пульт в Telegram</li>
+          <li>Эксплуатация: VPS, systemd-юниты, ротация записей, сторожевые механизмы, предохранитель аудиоочереди</li>
+          <li>380+ автотестов; каждая фаза — через независимое ревью кода</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">SIP</span><span class="chip">Whisper/STT</span><span class="chip">YandexGPT</span><span class="chip">ElevenLabs TTS</span><span class="chip">systemd</span><span class="chip">VPS</span><span class="chip">pytest</span></div>
+      </article>
+      <article class="card">
+        <h3>VoiceAgent — персональный AI-ассистент</h3>
+        <p>Telegram-ассистент, который не просто отвечает текстом, а действует: вызывает инструменты, планирует задачи, работает с календарём.</p>
+        <ul class="facts">
+          <li>Интеграция LLM API и tool calling: модель сама выбирает и вызывает функции</li>
+          <li>Планирование и фоновое выполнение задач по расписанию</li>
+          <li>Конфигурации вынесены из кода, токены и ключи — в защищённом хранении</li>
+          <li>Приватный репозиторий на GitHub — доступ по запросу</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">LLM API</span><span class="chip">tool calling</span><span class="chip">MCP</span><span class="chip">Telegram Bot API</span><span class="chip">Git</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <div class="eyebrow">// как устроено</div>
+    <h2>Путь одного звонка</h2>
+    <p class="sub">Пять звеньев, каждое со своим бюджетом задержки: пауза дольше секунды — и собеседник понимает, что говорит с машиной.</p>
+    <div class="flow">
+      <div class="node"><b>01 · вход</b><span>Входящий звонок через SIP-транк оператора</span></div>
+      <div class="node"><b>02 · слух</b><span>STT в реальном времени, определение конца фразы</span></div>
+      <div class="node"><b>03 · мысль</b><span>LLM-диалог: персона, логика, вызов инструментов</span></div>
+      <div class="node"><b>04 · голос</b><span>TTS-синтез, барьер перебивания, аудиоочередь</span></div>
+      <div class="node"><b>05 · работа</b><span>VPS, systemd, запись, логи, сторожа, тесты</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="eyebrow">// стек</div>
+    <h2>Мои инструменты</h2>
+    <div class="stack">
+      <div class="group"><h3>Разработка</h3><div class="chips"><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">Git / GitHub</span><span class="chip">pytest</span><span class="chip">JSON-конфигурации</span></div></div>
+      <div class="group"><h3>AI / LLM</h3><div class="chips"><span class="chip">YandexGPT</span><span class="chip">Claude</span><span class="chip">OpenAI</span><span class="chip">DeepSeek</span><span class="chip">Groq</span><span class="chip">tool calling</span><span class="chip">MCP</span><span class="chip">LM Studio</span><span class="chip">Ollama</span><span class="chip">Whisper</span><span class="chip">ElevenLabs TTS</span></div></div>
+      <div class="group"><h3>Инфраструктура</h3><div class="chips"><span class="chip">Linux</span><span class="chip">systemd</span><span class="chip">VPS</span><span class="chip">SIP-телефония</span><span class="chip">VPN / OpenWrt</span></div></div>
+      <div class="group"><h3>Эксплуатация</h3><div class="chips"><span class="chip">Zabbix</span><span class="chip">Grafana</span><span class="chip">Apache Ignite</span><span class="chip">Kafka</span><span class="chip">SQL / PostgreSQL</span><span class="chip">инциденты, SLA</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <div class="eyebrow">// путь</div>
+    <h2>Из аппаратной инженерии — в AI</h2>
+    <p class="sub">Общая линия одна: разобраться в системе до причины, а не менять узлы наугад.</p>
+    <div class="path">
+      <div class="step">
+        <div class="when">2005 – 2015</div><div class="nd"></div>
+        <div class="what"><h3>BMW · инженер по диагностике электронных систем автомобиля</h3><p>Шины данных, блоки управления, силовая проводка; чтение электросхем, плавающие отказы, локализация неисправности до конкретного узла.</p><p style="margin-top:7px;color:color-mix(in srgb,var(--text) 38%,var(--muted))">Квалификационный паспорт BMW.</p></div>
+      </div>
+      <div class="step">
+        <div class="when">2018 – 2023</div><div class="nd"></div>
+        <div class="what"><h3>Major-Auto · администратор</h3><p>Работа в корпоративных информационных системах и базах данных, подготовка отчётности и аналитики. Ведение и сверка информации, контроль договоров и бюджетов.</p></div>
+      </div>
+      <div class="step">
+        <div class="when">2024 – 2025</div><div class="nd"></div>
+        <div class="what"><h3>Сбер · дежурная смена антифрода</h3><p>Мониторинг боевых систем (Zabbix, Grafana), реагирование на инциденты, восстановление кластера Apache Ignite, потоки данных Kafka, контроль SLA.</p></div>
+      </div>
+      <div class="step now">
+        <div class="when">2026 → сейчас</div><div class="nd"></div>
+        <div class="what"><h3>AI-assisted development</h3><p>Инженер по сопровождению ПО. Параллельно — самостоятельный выход в AI-разработку: от изучения предметной области и проектирования архитектуры до работающего голосового агента на VPS. Полный цикл в одиночку: спецификация, код, интеграции, автотесты, развёртывание и эксплуатация.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="eyebrow">// июль 2026</div>
+    <h2>Результаты по этапам</h2>
+    <p class="sub">Нажмите строку, чтобы увидеть результат и где хранятся подтверждающие материалы.</p>
+    <div class="filters" role="group" aria-label="Фильтр результатов">
+      <button class="fbtn active" data-f="all" type="button">Все</button>
+      <button class="fbtn" data-f="research" type="button">Исследование</button>
+      <button class="fbtn" data-f="design" type="button">Проектирование</button>
+      <button class="fbtn" data-f="integration" type="button">Интеграция</button>
+      <button class="fbtn" data-f="reliability" type="button">Надёжность</button>
+    </div>
+    <div class="items" id="items">
+      <article class="item" data-c="research">
+        <button class="head" type="button"><span class="date">03–07.07</span><span class="ttl">Изучение предметной области: архитектуры агентов, STT/TTS, SIP-инфраструктура</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: рабочие заметки и сравнительная оценка технологий, схема компонентов будущего решения. Где смотреть: материалы проекта, каталог docs.</div>
+      </article>
+      <article class="item" data-c="design">
+        <button class="head" type="button"><span class="date">08–10.07</span><span class="ttl">Концепция агента, диалоговая логика и функциональные требования, состав MVP</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: описание концепции, перечень требований и границы MVP. Где смотреть: документы проекта.</div>
+      </article>
+      <article class="item" data-c="design">
+        <button class="head" type="button"><span class="date">13.07</span><span class="ttl">Проектирование архитектуры, техническая спецификация и план спринта</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: архитектурная схема, спецификация и поэтапный план Э1–Э10. Где смотреть: docs/PLAN, git-история.</div>
+      </article>
+      <article class="item" data-c="research">
+        <button class="head" type="button"><span class="date">14.07</span><span class="ttl">Анализ SIP-провайдеров РФ и требований интеграции телефонии</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: сравнительный отчёт по провайдерам и критериям подключения, выбор варианта. Где смотреть: docs/reports.</div>
+      </article>
+      <article class="item" data-c="integration">
+        <button class="head" type="button"><span class="date">15–17.07</span><span class="ttl">LLM-интеграция, подключение SIP-транка, эксперимент EOU</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: код интеграции, стресс-тест сценариев деградации, контрольное соединение, измеренное улучшение времени отклика. Где смотреть: git-история, tests, журналы.</div>
+      </article>
+      <article class="item" data-c="reliability">
+        <button class="head" type="button"><span class="date">20–21.07</span><span class="ttl">systemd, ротация записей, автотесты, развёртывание, TTS-провайдер</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: systemd-конфигурация, сторож ротации, предохранитель аудиоочереди, комплексная проверка голосового сценария на живом звонке. Где смотреть: репозиторий, VPS, журналы сервиса.</div>
+      </article>
+      <article class="item" data-c="research">
+        <button class="head" type="button"><span class="date">22.07</span><span class="ttl">Потоковые realtime-API диалога: замер задержки синтеза, выбор языковой модели</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: замер задержки синтеза от боевого сервера, конфигурационный переключатель модели, отчёты по realtime-API. Где смотреть: docs/reports, git-история.</div>
+      </article>
+      <article class="item" data-c="reliability">
+        <button class="head" type="button"><span class="date">23.07</span><span class="ttl">Механизм контроля повторов в ответах агента; проверка на регрессионном звонке</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: двухслойный детектор повторов за флагом конфигурации, автотесты, протокол регрессионного звонка. Где смотреть: git-история, tests.</div>
+      </article>
+      <article class="item" data-c="integration">
+        <button class="head" type="button"><span class="date">24.07</span><span class="ttl">Потоковый синтез речи с удержанием соединения; калибровка порога EOU</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: потоковый TTS с удержанием соединения, калибровка порога окончания высказывания, синхронизация с боевым стендом. Где смотреть: git-история, VPS.</div>
+      </article>
+      <article class="item" data-c="reliability">
+        <button class="head" type="button"><span class="date">27.07</span><span class="ttl">Детектор смысловых повторов с подменой ответа; развёртывание и контрольный звонок</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: детектор с эскалацией до подмены ответа, отчёты холодного развёртывания и контрольного звонка. Где смотреть: docs/reports, git-история.</div>
+      </article>
+      <article class="item" data-c="design">
+        <button class="head" type="button"><span class="date">28.07</span><span class="ttl">Контроллер диалога: проектирование и офлайн-реализация; режим наблюдения на боевом стенде</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: спецификация и офлайн-реализация контроллера, ограничитель частоты речевых вставок, отчёт развёртывания. Где смотреть: docs, git-история.</div>
+      </article>
+      <article class="item" data-c="reliability">
+        <button class="head" type="button"><span class="date">29.07</span><span class="ttl">Приёмочные испытания контроллера на живых звонках; восстановление сервиса после сбоя VPS</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: протоколы приёмочных звонков, отчёт по восстановлению сервиса, зафиксированная модель поведения агента. Где смотреть: docs/reports, VPS.</div>
+      </article>
+      <article class="item" data-c="design">
+        <button class="head" type="button"><span class="date">30.07</span><span class="ttl">Подготовка репозитория к демонстрации: обезличивание конфигурации и проектная документация</span><span class="chev">⌄</span></button>
+        <div class="body">Результат: обезличенная конфигурация, обзорная проектная документация, оформленный репозиторий. Где смотреть: репозиторий проекта.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="documents">
+  <div class="wrap">
+    <div class="eyebrow">// материалы</div>
+    <h2>Документы</h2>
+    <p class="sub">Нажмите «Открыть» — документ раскроется прямо здесь. Повторное нажатие закроет его.</p>
+    <div class="docs">
+      <article class="doc">
+        <div class="dicon">CV</div>
+        <div><h3>Резюме</h3><p>Профиль, опыт, проекты и компетенции.</p>
+        <div class="dacts">
+          <button class="btn primary" type="button" data-open="documents/01_resume.pdf" data-title="Резюме — Сергей Шибелёв">Открыть</button>
+          <a class="btn" href="documents/01_resume.pdf" download>Скачать PDF</a>
+        </div></div>
+      </article>
+      <article class="doc">
+        <div class="dicon">AI</div>
+        <div><h3>Технический отчёт</h3><p>Архитектура решения, технологии и артефакты.</p>
+        <div class="dacts">
+          <button class="btn primary" type="button" data-open="documents/02_tech_report.pdf" data-title="Технический отчёт — голосовой AI-агент">Открыть</button>
+          <a class="btn" href="documents/02_tech_report.pdf" download>Скачать PDF</a>
+        </div></div>
+      </article>
+      <article class="doc">
+        <div class="dicon">07</div>
+        <div><h3>Результаты июля</h3><p>Задачи по датам, результаты и где смотреть материалы.</p>
+        <div class="dacts">
+          <button class="btn primary" type="button" data-open="documents/03_july_results.pdf" data-title="Результаты работы — июль 2026">Открыть</button>
+          <a class="btn" href="documents/03_july_results.pdf" download>PDF</a>
+          <a class="btn" href="documents/03_july_results.docx" download>DOCX</a>
+        </div></div>
+      </article>
+      <article class="doc">
+        <div class="dicon">&#9993;</div>
+        <div><h3>Сопроводительное письмо</h3><p>Готовность продолжать работу и рассматривать перевод.</p>
+        <div class="dacts">
+          <button class="btn primary" type="button" data-open="documents/04_cover_letter.pdf" data-title="Сопроводительное письмо">Открыть</button>
+          <a class="btn" href="documents/04_cover_letter.pdf" download>Скачать PDF</a>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="callout">
+      <div class="eyebrow">// сотрудничество</div>
+      <h2 style="margin-bottom:14px">Открыт к сотрудничеству</h2>
+      <p>Сопровождение ПО, автоматизация, AI-интеграции и разработка голосовых сервисов. Готов обсуждать формат сотрудничества и объём задач.</p>
+      <p>Рассматриваю как продолжение работы в текущем формате, так и другие варианты — в зависимости от задач и условий.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://t.me/kursivnik">t.me/kursivnik</a>
+        <a class="btn" href="mailto:kursivnik@gmail.com">kursivnik@gmail.com</a>
+        <a class="btn" href="tel:+79163274499">+7 (916) 327-44-99</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">© 2026 Сергей Шибелёв · Москва — страница собрана вручную, как и всё остальное</div>
+</footer>
+
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="vTitle">
+  <div class="vcard">
+    <div class="vhead">
+      <h3 id="vTitle">Документ</h3>
+      <a class="btn" id="vDownload" href="#" download>Скачать</a>
+      <button class="vclose" id="vClose" type="button" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="vbody">
+      <iframe id="vFrame" title="Просмотр документа"></iframe>
+      <div class="vfallback" id="vFallback">
+        <div>
+          <p>Браузер не показывает PDF во встроенном окне.</p>
+          <p style="margin-top:12px"><a class="btn primary" id="vOpenNew" href="#" target="_blank" rel="noopener">Открыть в новой вкладке</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, tb=document.getElementById('themeBtn');
+  tb.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    tb.textContent=dark?'☀':'◐';
+  });
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+
+  document.querySelectorAll('.head').forEach(function(b){
+    b.addEventListener('click',function(){b.closest('.item').classList.toggle('open')});
+  });
+  document.querySelectorAll('.fbtn').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active');
+      var f=b.dataset.f;
+      document.querySelectorAll('.item').forEach(function(i){
+        i.style.display=(f==='all'||i.dataset.c===f)?'':'none';
+      });
+    });
+  });
+
+
+
+  // --- анимация при прокрутке ---
+  var reduced2 = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. назначаем классы появления со сдвигом внутри группы
+  var groups = document.querySelectorAll('section .wrap');
+  groups.forEach(function(g){
+    var kids = g.querySelectorAll(':scope > .eyebrow, :scope > h2, :scope > .sub, :scope > .grid2 > *, :scope > .flow > *, :scope > .path > *, :scope > .items > *, :scope > .stack > *, :scope > .docs > *, :scope > .filters, :scope > .callout');
+    kids.forEach(function(el,i){
+      el.classList.add('reveal');
+      el.style.transitionDelay = Math.min(i,6)*70 + 'ms';
+    });
+  });
+  document.querySelector('.facts-card') && document.querySelector('.facts-card').classList.add('reveal');
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // 2. полоса прогресса + параллакс шапки + активный пункт меню
+  var bar = document.getElementById('progress'),
+      heroEl = document.querySelector('.hero'),
+      waveEl = document.getElementById('wave'),
+      links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a')),
+      secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }),
+      ticking = false;
+
+  function onScroll(){
+    var y = window.scrollY,
+        max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max>0 ? (y/max*100) : 0) + '%';
+
+    if(!reduced2 && heroEl){
+      var vh = window.innerHeight;
+      var k = Math.min(y/vh, 1);
+      heroEl.style.transform = 'translateY(' + (y*0.18) + 'px)';
+      heroEl.style.opacity = String(1 - k*0.85);
+      if(waveEl) waveEl.style.transform = 'translateY(' + (y*0.32) + 'px)';
+    }
+
+    var idx = -1;
+    secs.forEach(function(sec,i){ if(sec && sec.getBoundingClientRect().top <= 120) idx = i; });
+    links.forEach(function(a,i){ a.classList.toggle('active', i===idx); });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  }, {passive:true});
+  onScroll();
+
+  // --- читалка документов ---
+  var viewer=document.getElementById('viewer'),
+      vFrame=document.getElementById('vFrame'),
+      vTitle=document.getElementById('vTitle'),
+      vDl=document.getElementById('vDownload'),
+      vNew=document.getElementById('vOpenNew'),
+      vFb=document.getElementById('vFallback'),
+      current=null;
+
+  function closeViewer(){
+    viewer.classList.remove('open');
+    vFrame.removeAttribute('src');
+    vFb.classList.remove('show');
+    document.body.style.overflow='';
+    current=null;
+  }
+  function openViewer(src,title){
+    current=src;
+    vTitle.textContent=title;
+    vDl.setAttribute('href',src);
+    vNew.setAttribute('href',src);
+    vFb.classList.remove('show');
+    vFrame.setAttribute('src',src);
+    viewer.classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){
+      try{ if(!vFrame.contentDocument && !vFrame.contentWindow) vFb.classList.add('show'); }catch(e){}
+    },1200);
+  }
+  document.querySelectorAll('[data-open]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var src=b.dataset.open;
+      if(viewer.classList.contains('open') && current===src){ closeViewer(); return; }
+      openViewer(src, b.dataset.title || 'Документ');
+    });
+  });
+  document.getElementById('vClose').addEventListener('click',closeViewer);
+  viewer.addEventListener('click',function(e){ if(e.target===viewer) closeViewer(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && viewer.classList.contains('open')) closeViewer(); });
+
+  var c=document.getElementById('wave'), ctx=c.getContext('2d'), w,h,t=0;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function css(v){return getComputedStyle(root).getPropertyValue(v).trim()}
+  function resize(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio}
+  window.addEventListener('resize',resize); resize();
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    var step=9*devicePixelRatio;
+    var A=css('--wave-a').split(',').map(Number), B=css('--wave-b').split(',').map(Number);
+    for(var x=0;x<w;x+=step){
+      var n=x/w;
+      var amp=(Math.sin(n*11+t)*Math.sin(n*4.7-t*0.6)*0.5+0.55)*(h*0.19)*(0.3+0.7*Math.sin(n*Math.PI));
+      amp=Math.max(2,amp);
+      var k=0.5+0.5*Math.sin(n*2.4+t*0.35);            // перелив зелёный↔синий
+      var r=A[0]+(B[0]-A[0])*k, g=A[1]+(B[1]-A[1])*k, b=A[2]+(B[2]-A[2])*k;
+      var a=0.16+0.42*Math.sin(n*Math.PI);              // ярче в центре
+      ctx.strokeStyle='rgba('+(r|0)+','+(g|0)+','+(b|0)+','+a.toFixed(3)+')';
+      ctx.lineWidth=2*devicePixelRatio;
+      ctx.beginPath(); ctx.moveTo(x,h/2-amp); ctx.lineTo(x,h/2+amp); ctx.stroke();
+    }
+    t+=0.016;
+    if(!reduced) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+</body>
+</html>
